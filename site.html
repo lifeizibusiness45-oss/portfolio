@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Scofield Mohamed - Ingénieur Logiciel & Architecte de Solutions Digitales à Douala. Spécialiste des solutions sur mesure pour PME, Éducation et Micro-finance."
+        />
+        <meta name="author" content="Scofield Mohamed" />
+        <title>
+            Scofield Mohamed | Ingénieur Logiciel & Solutions Digitales
+        </title>
+
+        <!-- Polices -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            /* --- VARIABLES & RESET --- */
+            :root {
+                /* Palette Premium Deep Space */
+                --bg-color: #030304;
+                --bg-secondary: #0a0a0b;
+                --bg-card: #121213;
+                --text-main: #ffffff;
+                --text-muted: #9ca3af;
+                --accent-primary: #2563eb; /* Royal Blue */
+                --accent-glow: rgba(37, 99, 235, 0.4);
+                --border-color: #27272a;
+
+                /* Layout */
+                --max-width: 1200px;
+                --header-height: 80px;
+                --radius: 12px;
+
+                /* Animation */
+                --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                font-family: "Inter", sans-serif;
+                background-color: var(--bg-color);
+                color: var(--text-main);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+                transition: var(--transition);
+            }
+            ul {
+                list-style: none;
+            }
+            img {
+                max-width: 100%;
+                display: block;
+            }
+
+            /* --- TYPOGRAPHY --- */
+            h1,
+            h2,
+            h3 {
+                font-weight: 700;
+                letter-spacing: -0.03em;
+                line-height: 1.1;
+            }
+            h1 {
+                font-size: clamp(2.8rem, 6vw, 4.5rem);
+            }
+            h2 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            h3 {
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+            p {
+                color: var(--text-muted);
+                font-size: 1.05rem;
+            }
+
+            .text-accent {
+                color: var(--accent-primary);
+            }
+            .gradient-text {
+                background: linear-gradient(to right, #fff, #94a3b8);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            /* --- UI COMPONENTS --- */
+            .container {
+                max-width: var(--max-width);
+                margin: 0 auto;
+                padding: 0 24px;
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 14px 28px;
+                border-radius: 6px;
+                font-weight: 600;
+                font-size: 0.95rem;
+                transition: var(--transition);
+                cursor: pointer;
+                border: 1px solid transparent;
+                position: relative;
+            }
+
+            .btn-primary {
+                background-color: var(--accent-primary);
+                color: white;
+                box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+            }
+            .btn-primary:hover {
+                background-color: #1d4ed8;
+                transform: translateY(-2px);
+            }
+
+            .btn-secondary {
+                background-color: transparent;
+                border-color: var(--border-color);
+                color: var(--text-main);
+            }
+            .btn-secondary:hover {
+                border-color: var(--text-main);
+                background-color: rgba(255, 255, 255, 0.05);
+            }
+
+            /* Tooltip pour les boutons disabled/bientôt dispo */
+            .btn[data-demo="soon"] {
+                opacity: 0.7;
+                cursor: not-allowed;
+            }
+            .btn[data-demo="soon"]:hover::after {
+                content: attr(data-tooltip);
+                position: absolute;
+                bottom: 120%;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #fff;
+                color: #000;
+                padding: 6px 12px;
+                border-radius: 4px;
+                font-size: 0.8rem;
+                white-space: nowrap;
+                font-weight: 600;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                pointer-events: none;
+            }
+
+            .badge {
+                display: inline-block;
+                padding: 4px 12px;
+                border-radius: 50px;
+                font-size: 0.75rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                margin-bottom: 1rem;
+            }
+            .badge-blue {
+                background: rgba(37, 99, 235, 0.15);
+                color: #60a5fa;
+                border: 1px solid rgba(37, 99, 235, 0.3);
+            }
+            .badge-green {
+                background: rgba(16, 185, 129, 0.15);
+                color: #34d399;
+                border: 1px solid rgba(16, 185, 129, 0.3);
+            }
+            .badge-purple {
+                background: rgba(139, 92, 246, 0.15);
+                color: #a78bfa;
+                border: 1px solid rgba(139, 92, 246, 0.3);
+            }
+
+            /* --- HEADER --- */
+            header {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                height: var(--header-height);
+                background: rgba(3, 3, 4, 0.85);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                z-index: 1000;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .nav-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 100%;
+            }
+            .logo {
+                font-weight: 800;
+                font-size: 1.3rem;
+                letter-spacing: -0.04em;
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 32px;
+            }
+            .nav-links a {
+                font-size: 0.95rem;
+                color: var(--text-muted);
+                font-weight: 500;
+            }
+            .nav-links a:hover {
+                color: var(--text-main);
+            }
+
+            .mobile-menu-btn {
+                display: none;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+
+            /* --- HERO --- */
+            .hero {
+                position: relative;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                padding-top: var(--header-height);
+                overflow: hidden;
+            }
+            #hero-canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                opacity: 0.3;
+            }
+
+            .hero-grid {
+                display: grid;
+                grid-template-columns: 1.1fr 0.9fr;
+                gap: 60px;
+                align-items: center;
+            }
+
+            .hero-content {
+                max-width: 650px;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+                color: var(--accent-primary);
+                font-weight: 600;
+                margin-bottom: 1.5rem;
+                display: block;
+            }
+            .hero-slogan {
+                font-size: 1.25rem;
+                color: #d1d5db;
+                margin-bottom: 2.5rem;
+                border-left: 4px solid var(--accent-primary);
+                padding-left: 20px;
+                line-height: 1.4;
+            }
+
+            .hero-meta {
+                display: flex;
+                gap: 24px;
+                margin-bottom: 3rem;
+                font-size: 0.95rem;
+                color: var(--text-muted);
+            }
+            .meta-item {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            /* Hero Image Styling */
+            .hero-visual {
+                position: relative;
+                display: flex;
+                justify-content: center;
+            }
+            .profile-img {
+                width: 400px;
+                height: 400px;
+                object-fit: cover;
+                border-radius: 24px;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+                transition: transform 0.5s ease;
+            }
+            .profile-img:hover {
+                transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+            }
+
+            /* --- SECTIONS --- */
+            section {
+                padding: 120px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            }
+            .section-header {
+                margin-bottom: 80px;
+                max-width: 700px;
+            }
+            .section-label {
+                color: var(--accent-primary);
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                font-size: 0.85rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                display: block;
+            }
+
+            /* --- ABOUT --- */
+            .about-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 80px;
+                align-items: start;
+            }
+            .stat-row {
+                display: flex;
+                gap: 40px;
+                margin-top: 40px;
+                padding-top: 40px;
+                border-top: 1px solid var(--border-color);
+            }
+            .stat h4 {
+                font-size: 2.5rem;
+                color: white;
+                margin-bottom: 5px;
+            }
+            .stat span {
+                font-size: 0.9rem;
+                color: var(--text-muted);
+                text-transform: uppercase;
+            }
+
+            /* --- SKILLS --- */
+            .skills-wrapper {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 30px;
+            }
+            .skill-category {
+                background: var(--bg-card);
+                padding: 30px;
+                border-radius: var(--radius);
+                border: 1px solid var(--border-color);
+                transition: var(--transition);
+            }
+            .skill-category:hover {
+                border-color: var(--accent-primary);
+                transform: translateY(-5px);
+            }
+            .cat-title {
+                font-size: 1.1rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .skill-list li {
+                margin-bottom: 12px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #d1d5db;
+                font-size: 0.95rem;
+            }
+            .skill-level {
+                font-size: 0.75rem;
+                padding: 2px 8px;
+                border-radius: 4px;
+                font-weight: 700;
+                background: rgba(255, 255, 255, 0.05);
+                color: var(--text-muted);
+            }
+
+            /* --- PROJECTS (CSS VISUALS) --- */
+            .projects-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 100px;
+            }
+
+            .project-card {
+                display: grid;
+                grid-template-columns: 1.2fr 1fr;
+                gap: 50px;
+                align-items: center;
+            }
+            .project-card.reverse {
+                grid-template-columns: 1fr 1.2fr;
+            }
+            .project-card.reverse .project-content {
+                order: -1;
+            }
+
+            /* CSS Only Project Visuals */
+            .project-visual {
+                position: relative;
+                border-radius: var(--radius);
+                overflow: hidden;
+                aspect-ratio: 16/9;
+                border: 1px solid var(--border-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: rgba(255, 255, 255, 0.2);
+            }
+            /* Gradients & Icons pour éviter les images externes */
+            .visual-grad-1 {
+                background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            }
+            .visual-grad-2 {
+                background: linear-gradient(135deg, #0f172a 0%, #581c87 100%);
+            }
+            .visual-grad-3 {
+                background: linear-gradient(135deg, #0f172a 0%, #064e3b 100%);
+            }
+
+            .visual-icon {
+                width: 80px;
+                height: 80px;
+                opacity: 0.8;
+            }
+
+            .project-content h3 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                color: white;
+            }
+
+            .project-impact {
+                background: rgba(37, 99, 235, 0.08);
+                border-left: 3px solid var(--accent-primary);
+                padding: 15px 20px;
+                margin: 20px 0;
+                border-radius: 0 8px 8px 0;
+            }
+            .project-impact p {
+                color: #e0e7ff;
+                font-size: 0.95rem;
+                margin: 0;
+            }
+            .project-impact strong {
+                color: white;
+                font-weight: 700;
+            }
+
+            .tech-stack {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin: 25px 0;
+            }
+            .tech-pill {
+                font-size: 0.85rem;
+                padding: 6px 14px;
+                background: var(--badge-bg);
+                border-radius: 20px;
+                color: #d1d5db;
+            }
+
+            .project-actions {
+                display: flex;
+                gap: 15px;
+                margin-top: 30px;
+            }
+            .btn-small {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            /* --- PROCESSUS DE TRAVAIL (NOUVEAU) --- */
+            .process-steps {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 30px;
+                text-align: center;
+            }
+            .process-step {
+                background: var(--bg-card);
+                padding: 30px 20px;
+                border-radius: var(--radius);
+                border: 1px solid var(--border-color);
+            }
+            .step-icon {
+                width: 50px;
+                height: 50px;
+                margin: 0 auto 20px;
+                background: rgba(37, 99, 235, 0.1);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--accent-primary);
+            }
+            .step-number {
+                font-size: 3rem;
+                font-weight: 800;
+                color: rgba(255, 255, 255, 0.05);
+                position: absolute;
+                top: 10px;
+                right: 20px;
+            }
+
+            /* --- TÉMOIGNAGES (NOUVEAU) --- */
+            .testimonials-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+            .testimonial-card {
+                background: var(--bg-card);
+                padding: 40px;
+                border-radius: var(--radius);
+                border: 1px solid var(--border-color);
+                position: relative;
+            }
+            .quote-icon {
+                font-size: 4rem;
+                color: rgba(255, 255, 255, 0.05);
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                line-height: 1;
+            }
+            .client-info {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-top: 25px;
+            }
+            .client-avatar {
+                width: 50px;
+                height: 50px;
+                background: #333;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                color: white;
+            }
+
+            /* --- EXPERIENCE --- */
+            .timeline-item {
+                position: relative;
+                padding-left: 40px;
+                margin-bottom: 60px;
+                border-left: 2px solid var(--border-color);
+            }
+            .timeline-item::before {
+                content: "";
+                position: absolute;
+                left: -6px;
+                top: 0;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: var(--accent-primary);
+                box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+            }
+            .role-title {
+                font-size: 1.4rem;
+                color: white;
+                font-weight: 600;
+            }
+            .company-name {
+                font-size: 1.1rem;
+                color: var(--accent-primary);
+                margin-bottom: 15px;
+            }
+            .date-range {
+                font-size: 0.9rem;
+                color: var(--text-muted);
+                margin-bottom: 20px;
+                display: inline-block;
+                font-family: monospace;
+            }
+
+            /* --- CONTACT --- */
+            .contact-box {
+                background: linear-gradient(145deg, var(--bg-card), #0a0a0b);
+                padding: 60px;
+                border-radius: 20px;
+                border: 1px solid var(--border-color);
+                text-align: center;
+            }
+            .contact-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 30px;
+                margin-top: 40px;
+            }
+            .contact-item h5 {
+                color: white;
+                margin-bottom: 5px;
+            }
+            .contact-item a {
+                color: var(--accent-primary);
+                font-weight: 600;
+            }
+            .availability-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: rgba(16, 185, 129, 0.1);
+                color: #34d399;
+                padding: 8px 16px;
+                border-radius: 50px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                margin-top: 20px;
+                border: 1px solid rgba(16, 185, 129, 0.2);
+            }
+
+            /* --- FOOTER --- */
+            footer {
+                padding: 60px 0 30px;
+                text-align: center;
+                border-top: 1px solid var(--border-color);
+                color: var(--text-muted);
+                font-size: 0.9rem;
+            }
+            .social-links {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+            .social-links a svg {
+                width: 24px;
+                height: 24px;
+                fill: var(--text-muted);
+                transition: var(--transition);
+            }
+            .social-links a:hover svg {
+                fill: white;
+                transform: translateY(-3px);
+            }
+
+            /* --- ANIMATION UTILS --- */
+            .reveal {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            }
+            .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* --- RESPONSIVE --- */
+            @media (max-width: 900px) {
+                .hero-grid,
+                .project-card,
+                .project-card.reverse,
+                .about-grid {
+                    grid-template-columns: 1fr;
+                    gap: 40px;
+                }
+                .hero-content {
+                    text-align: center;
+                    margin: 0 auto;
+                }
+                .hero-slogan {
+                    border-left: none;
+                    border-top: 2px solid var(--accent-primary);
+                    padding-top: 15px;
+                    display: inline-block;
+                }
+                .hero-meta {
+                    justify-content: center;
+                }
+                .hero-actions {
+                    justify-content: center;
+                }
+                .profile-img {
+                    width: 300px;
+                    height: 300px;
+                    margin: 0 auto;
+                }
+                .project-content {
+                    order: 0 !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- NAVIGATION -->
+        <header>
+            <div class="container nav-container">
+                <a href="#" class="logo"
+                    >Scofield<span class="text-accent">.dev</span></a
+                >
+                <nav>
+                    <ul class="nav-links" id="nav-links">
+                        <li><a href="#about">Expertise</a></li>
+                        <li><a href="#projects">Réalisations</a></li>
+                        <li><a href="#process">Méthode</a></li>
+                        <li><a href="#testimonials">Clients</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    ☰
+                </button>
+            </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <canvas id="hero-canvas"></canvas>
+            <div class="container hero-grid">
+                <div class="hero-content reveal">
+                    <span class="hero-subtitle"
+                        >Ingénieur Logiciel Full-Stack</span
+                    >
+                    <h1>Scofield Mohamed</h1>
+                    <div class="hero-slogan">
+                        "Je ne suis pas juste un développeur. Je suis
+                        l'architecte qui transforme le chaos administratif des
+                        entreprises camerounaises en systèmes digitaux fluides
+                        et rentables."
+                    </div>
+
+                    <div class="hero-meta">
+                        <div class="meta-item">📍 Douala, CM</div>
+                        <div class="meta-item">🎓 IUT Ngaoundéré</div>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary"
+                            >Voir mes solutions</a
+                        >
+                        <a href="#contact" class="btn btn-secondary"
+                            >Discuter de votre projet</a
+                        >
+                    </div>
+                </div>
+
+                <div class="hero-visual reveal">
+                    <!-- IMPORTANT: Remplacer src par votre vraie photo professionnelle -->
+                    <img
+                        src="https://picsum.photos/seed/scofield2/800/800.jpg"
+                        alt="Scofield Mohamed"
+                        class="profile-img"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <!-- À PROPOS (NARRATIF & STATS) -->
+        <section id="about">
+            <div class="container">
+                <div class="about-grid reveal">
+                    <div>
+                        <span class="section-label">Mon Histoire</span>
+                        <h2>
+                            Comprendre le terrain pour mieux le digitaliser.
+                        </h2>
+                        <br />
+                        <p>
+                            Mon parcours n'a pas commencé devant un écran, mais
+                            dans les coulisses des administrations de Douala.
+                            J'ai vu des secrétaires passer des nuits à calculer
+                            des bulletins de notes à la main, et des gérants de
+                            PME perdre des milliers de FCFA à cause de stocks
+                            mal gérés sur des cahiers.
+                        </p>
+                        <br />
+                        <p>
+                            C'est cette réalité que je combats chaque jour. Je
+                            ne vends pas du code, je vends du
+                            <strong>temps</strong> et de la
+                            <strong>précision</strong>. En combinant une rigueur
+                            d'ingénieur logiciel avec une profonde connaissance
+                            des défis locaux, je conçois des outils qui ne
+                            nécessitent pas d'être un expert informatique pour
+                            être utilisés. Simples. Robustes. Efficaces.
+                        </p>
+
+                        <div class="stat-row">
+                            <div class="stat">
+                                <h4>12+</h4>
+                                <span>Projets Livrés</span>
+                            </div>
+                            <div class="stat">
+                                <h4>100%</h4>
+                                <span>Satisfaction Client</span>
+                            </div>
+                            <div class="stat">
+                                <h4>3+</h4>
+                                <span>Années d'Expérience</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPÉTENCES (RÉSULTAT ORIENTÉ) -->
+        <section id="skills" style="background-color: var(--bg-secondary)">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Stack Technique</span>
+                    <h2>Des outils maîtrisés pour des résultats concrets.</h2>
+                </div>
+
+                <div class="skills-wrapper reveal">
+                    <!-- Backend -->
+                    <div class="skill-category">
+                        <div class="cat-title">🖥️ Architecture & Back-End</div>
+                        <ul class="skill-list">
+                            <li>
+                                PHP / Laravel
+                                <span class="skill-level">Production</span>
+                            </li>
+                            <li>
+                                MySQL / PostgreSQL
+                                <span class="skill-level"
+                                    >Optimisation Avancée</span
+                                >
+                            </li>
+                            <li>
+                                API REST
+                                <span class="skill-level">Sécurisée</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Frontend -->
+                    <div class="skill-category">
+                        <div class="cat-title">🎨 Interface Utilisateur</div>
+                        <ul class="skill-list">
+                            <li>
+                                HTML5 / CSS3
+                                <span class="skill-level">Pixel Perfect</span>
+                            </li>
+                            <li>
+                                JavaScript (ES6+)
+                                <span class="skill-level">Moderne</span>
+                            </li>
+                            <li>
+                                React.js
+                                <span class="skill-level"
+                                    >Intégration Composants</span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- DevOps & Tools -->
+                    <div class="skill-category">
+                        <div class="cat-title">⚙️ Méthodologie & Outils</div>
+                        <ul class="skill-list">
+                            <li>
+                                Git / GitHub
+                                <span class="skill-level"
+                                    >Gestion de Version</span
+                                >
+                            </li>
+                            <li>
+                                Méthode Agile
+                                <span class="skill-level"
+                                    >Gestion de Projet</span
+                                >
+                            </li>
+                            <li>
+                                Déploiement Cloud
+                                <span class="skill-level"
+                                    >Vercel / Netlify</span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJETS (VALEUR BUSINESS & CSS PLACEHOLDERS) -->
+        <section id="projects">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Portfolio</span>
+                    <h2>Solutions qui créent de la valeur.</h2>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- PROJET 1 : GESTION ACADÉMIQUE -->
+                    <article class="project-card reveal">
+                        <div class="project-visual visual-grad-1">
+                            <!-- Icone SVG Education -->
+                            <svg
+                                class="visual-icon"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"
+                                />
+                            </svg>
+                        </div>
+                        <div class="project-content">
+                            <span class="badge badge-blue">Éducation</span>
+                            <h3>Plateforme Académique Centralisée</h3>
+
+                            <div class="project-impact">
+                                <p>
+                                    <strong>Résultat :</strong> Réduction de 70%
+                                    du temps de traitement administratif et
+                                    élimination totale des erreurs de calcul sur
+                                    les bulletins.
+                                </p>
+                            </div>
+
+                            <p>
+                                Une solution robuste qui a permis à un
+                                établissement de 500+ élèves de dématérialiser
+                                l'ensemble du cycle scolaire : des notes aux
+                                absences, offrant aux parents une visibilité en
+                                temps réel.
+                            </p>
+                            <p>
+                                <strong>Apport clé :</strong> Fiabilité des
+                                données académiques et gain de temps massif pour
+                                le personnel.
+                            </p>
+
+                            <div class="tech-stack">
+                                <span class="tech-pill">Laravel</span>
+                                <span class="tech-pill">MySQL</span>
+                                <span class="tech-pill">Bootstrap</span>
+                            </div>
+
+                            <div class="project-actions">
+                                <a
+                                    href="#"
+                                    class="btn btn-secondary btn-small"
+                                    data-demo="soon"
+                                    data-tooltip="Démo privée (Client)"
+                                    >Voir le Code</a
+                                >
+                                <button
+                                    class="btn btn-primary btn-small"
+                                    data-demo="soon"
+                                    data-tooltip="Accès réservé client"
+                                >
+                                    Démo Live
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PROJET 2 : GESTION DE STOCK -->
+                    <article class="project-card reverse reveal">
+                        <div class="project-visual visual-grad-2">
+                            <!-- Icone SVG Stock -->
+                            <svg
+                                class="visual-icon"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M20 13H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 19c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM20 3H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+                                />
+                            </svg>
+                        </div>
+                        <div class="project-content">
+                            <span class="badge badge-purple">Logistique</span>
+                            <h3>Système de Gestion de Stocks Intelligent</h3>
+
+                            <div class="project-impact">
+                                <p>
+                                    <strong>Résultat :</strong> Réduction des
+                                    pertes de stock de 20% et
+                                    réapprovisionnement optimisé grâce aux
+                                    alertes automatiques.
+                                </p>
+                            </div>
+
+                            <p>
+                                Conçu pour un détaillant majeur, ce système
+                                transforme la gestion manuelle des inventaires
+                                en un outil prédictif. Fini les ruptures de
+                                stock inattendues et les surstocks coûteux.
+                            </p>
+                            <p>
+                                <strong>Apport clé :</strong> Visibilité
+                                financière instantanée et maîtrise des flux de
+                                marchandises.
+                            </p>
+
+                            <div class="tech-stack">
+                                <span class="tech-pill">PHP</span>
+                                <span class="tech-pill">MySQL</span>
+                                <span class="tech-pill">Chart.js</span>
+                            </div>
+
+                            <div class="project-actions">
+                                <a
+                                    href="#"
+                                    class="btn btn-secondary btn-small"
+                                    data-demo="soon"
+                                    data-tooltip="Code sur GitHub"
+                                    >Voir le Code</a
+                                >
+                                <button
+                                    class="btn btn-primary btn-small"
+                                    data-demo="soon"
+                                    data-tooltip="Démo bientôt disponible"
+                                >
+                                    Démo Live
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PROJET 3 : MICRO-FINANCE (REPLACE PORTFOLIO) -->
+                    <article class="project-card reveal">
+                        <div class="project-visual visual-grad-3">
+                            <!-- Icone SVG Finance -->
+                            <svg
+                                class="visual-icon"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"
+                                />
+                            </svg>
+                        </div>
+                        <div class="project-content">
+                            <span class="badge badge-green">Fintech</span>
+                            <h3>Plateforme de Gestion Coopérative</h3>
+
+                            <div class="project-impact">
+                                <p>
+                                    <strong>Résultat :</strong> Sécurisation des
+                                    transactions de 200+ membres et transparence
+                                    totale des comptes d'épargne et de prêt.
+                                </p>
+                            </div>
+
+                            <p>
+                                Une application de micro-finance sur mesure pour
+                                une coopérative locale. Elle gère les
+                                cotisations, les prêts, et les intérêts avec une
+                                précision comptable stricte, remplaçant les
+                                registres manuels vulnérables aux erreurs.
+                            </p>
+                            <p>
+                                <strong>Apport clé :</strong> Confiance accrue
+                                des membres grâce à des rapports financiers
+                                générés automatiquement.
+                            </p>
+
+                            <div class="tech-stack">
+                                <span class="tech-pill">Laravel</span>
+                                <span class="tech-pill">MySQL</span>
+                                <span class="tech-pill">Sécurité Avancée</span>
+                            </div>
+
+                            <div class="project-actions">
+                                <a
+                                    href="#"
+                                    class="btn btn-secondary btn-small"
+                                    data-demo="soon"
+                                    data-tooltip="Confidentialité client"
+                                    >Voir le Code</a
+                                >
+                                <button
+                                    class="btn btn-primary btn-small"
+                                    data-demo="soon"
+                                    data-tooltip="Démo privée"
+                                >
+                                    Démo Live
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION PROCESSUS (NOUVELLE) -->
+        <section id="process" style="background-color: var(--bg-secondary)">
+            <div class="container">
+                <div
+                    class="section-header reveal"
+                    style="text-align: center; margin: 0 auto 60px"
+                >
+                    <span class="section-label">Méthodologie</span>
+                    <h2>Comment je travaille</h2>
+                </div>
+
+                <div class="process-steps reveal">
+                    <!-- Etape 1 -->
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <div class="step-icon">
+                            <svg
+                                width="24"
+                                height="24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3>Découverte</h3>
+                        <p style="font-size: 0.9rem; margin-top: 10px">
+                            Analyse approfondie de vos besoins actuels et
+                            identification des goulots d'étranglement.
+                        </p>
+                    </div>
+
+                    <!-- Etape 2 -->
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <div class="step-icon">
+                            <svg
+                                width="24"
+                                height="24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3>Proposition</h3>
+                        <p style="font-size: 0.9rem; margin-top: 10px">
+                            Présentation d'une solution sur mesure avec un devis
+                            transparent et délai défini.
+                        </p>
+                    </div>
+
+                    <!-- Etape 3 -->
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <div class="step-icon">
+                            <svg
+                                width="24"
+                                height="24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3>Développement</h3>
+                        <p style="font-size: 0.9rem; margin-top: 10px">
+                            Construction itérative de votre solution avec des
+                            points de validation réguliers.
+                        </p>
+                    </div>
+
+                    <!-- Etape 4 -->
+                    <div class="process-step">
+                        <div class="step-number">04</div>
+                        <div class="step-icon">
+                            <svg
+                                width="24"
+                                height="24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M5 13l4 4L19 7"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3>Livraison</h3>
+                        <p style="font-size: 0.9rem; margin-top: 10px">
+                            Mise en ligne, formation de vos équipes et support
+                            technique réactif.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TÉMOIGNAGES (NOUVELLE) -->
+        <section id="testimonials">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Confiance</span>
+                    <h2>Ils me font confiance</h2>
+                </div>
+
+                <div class="testimonials-grid reveal">
+                    <!-- Temoignage 1 -->
+                    <div class="testimonial-card">
+                        <div class="quote-icon">“</div>
+                        <p style="position: relative; z-index: 1">
+                            Avant Scofield, la gestion de nos notes était un
+                            cauchemar à chaque fin de trimestre. Aujourd'hui,
+                            tout est automatisé. Le gain de temps pour nos
+                            professeurs est considérable.
+                        </p>
+                        <div class="client-info">
+                            <div class="client-avatar">MM</div>
+                            <div>
+                                <h5 style="color: white">M. Manga</h5>
+                                <span
+                                    style="
+                                        font-size: 0.85rem;
+                                        color: var(--text-muted);
+                                    "
+                                    >Directeur, Collège Bilingue de Douala</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Temoignage 2 -->
+                    <div class="testimonial-card">
+                        <div class="quote-icon">“</div>
+                        <p style="position: relative; z-index: 1">
+                            Scofield a compris nos problèmes de stock en une
+                            seule réunion. L'application qu'il a développée nous
+                            a fait économiser des sommes importantes en pertes
+                            évitées.
+                        </p>
+                        <div class="client-info">
+                            <div
+                                class="client-avatar"
+                                style="background: var(--accent-primary)"
+                            >
+                                FN
+                            </div>
+                            <div>
+                                <h5 style="color: white">Mme. Ngo</h5>
+                                <span
+                                    style="
+                                        font-size: 0.85rem;
+                                        color: var(--text-muted);
+                                    "
+                                    >Gérante, Supermarché Akwa</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARCOURS -->
+        <section id="experience" style="background-color: var(--bg-secondary)">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Mon Parcours</span>
+                    <h2>Expérience & Formation</h2>
+                </div>
+
+                <div class="timeline reveal">
+                    <!-- Expérience -->
+                    <div class="timeline-item">
+                        <span class="date-range">2023 – Présent</span>
+                        <h3 class="role-title">Ingénieur Logiciel Freelance</h3>
+                        <div class="company-name">
+                            Scofield.dev • Douala, Cameroun
+                        </div>
+                        <p>
+                            Conception et déploiement de solutions digitales
+                            pour des PME et institutions éducatives.
+                            Spécialisation dans l'automatisation des processus
+                            métiers et l'optimisation des flux de données.
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="date-range">2022 – 2023</span>
+                        <h3 class="role-title">Développeur Full-Stack</h3>
+                        <div class="company-name">
+                            Projets Académiques • Ngaoundéré
+                        </div>
+                        <p>
+                            Développement d'applications web complètes dans un
+                            environnement universitaire, avec un focus sur
+                            l'architecture MVC et la sécurité des bases de
+                            données.
+                        </p>
+                    </div>
+
+                    <!-- Formation -->
+                    <div class="timeline-item">
+                        <span class="date-range">2020 – 2023</span>
+                        <h3 class="role-title">DUT Génie Logiciel</h3>
+                        <div class="company-name">IUT de Ngaoundéré</div>
+                        <p>
+                            Formation d'ingénieur couvrant l'algorithmique, les
+                            systèmes de gestion de bases de données, le génie
+                            logiciel et le développement web full-stack.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="container">
+                <div class="contact-box reveal">
+                    <h2>Prêt à digitaliser votre activité ?</h2>
+                    <p style="max-width: 600px; margin: 20px auto 40px">
+                        Je suis disponible pour des projets nouveaux et des
+                        consultations stratégiques. Discutons de vos défis et
+                        trouvons la solution technique adaptée.
+                    </p>
+
+                    <div class="availability-badge">
+                        <span
+                            style="
+                                width: 10px;
+                                height: 10px;
+                                background: #34d399;
+                                border-radius: 50%;
+                                box-shadow: 0 0 10px #34d399;
+                            "
+                        ></span>
+                        Disponible pour nouveaux projets — Réponse sous 24h
+                    </div>
+
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <h5>Email</h5>
+                            <a href="mailto:contact@scofield.dev"
+                                >contact@scofield.dev</a
+                            >
+                        </div>
+                        <div class="contact-item">
+                            <h5>Téléphone</h5>
+                            <a href="tel:+237692519292">+237 692 51 92 92</a>
+                        </div>
+                        <div class="contact-item">
+                            <h5>Localisation</h5>
+                            <span style="color: white">Douala / Remote</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 40px">
+                        <a
+                            href="mailto:contact@scofield.dev?subject=Projet%20Web%20-%20Contact"
+                            class="btn btn-primary"
+                            >Démarrer une discussion</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="container">
+                <div class="social-links">
+                    <a
+                        href="https://github.com/mohamed-scofield"
+                        target="_blank"
+                        aria-label="GitHub"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                            />
+                        </svg>
+                    </a>
+                    <a href="#" target="_blank" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                            />
+                        </svg>
+                    </a>
+                </div>
+                <p>
+                    &copy; 2025 Scofield Mohamed. Solutions digitales sur
+                    mesure.
+                </p>
+            </div>
+        </footer>
+
+        <!-- SCRIPTS -->
+        <script>
+            // 1. Canvas Animation
+            const canvas = document.getElementById("hero-canvas");
+            const ctx = canvas.getContext("2d");
+            let width,
+                height,
+                particles = [];
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.size = Math.random() * 2;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+                }
+                draw() {
+                    ctx.fillStyle = "rgba(37,99,235,0.5)";
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            function initParticles() {
+                particles = [];
+                for (let i = 0; i < 50; i++) particles.push(new Particle());
+            }
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach((p) => {
+                    p.update();
+                    p.draw();
+                });
+                particles.forEach((p1, i) =>
+                    particles.slice(i + 1).forEach((p2) => {
+                        const dx = p1.x - p2.x,
+                            dy = p1.y - p2.y,
+                            dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 150) {
+                            ctx.strokeStyle = `rgba(37,99,235,${
+                                1 - dist / 150
+                            })`;
+                            ctx.beginPath();
+                            ctx.moveTo(p1.x, p1.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
+                    })
+                );
+                requestAnimationFrame(animate);
+            }
+            window.addEventListener("resize", () => {
+                resize();
+                initParticles();
+            });
+            resize();
+            initParticles();
+            animate();
+
+            // 2. Scroll Reveal
+            const observer = new IntersectionObserver(
+                (entries) =>
+                    entries.forEach(
+                        (e) =>
+                            e.isIntersecting && e.target.classList.add("active")
+                    ),
+                { threshold: 0.1 }
+            );
+            document
+                .querySelectorAll(".reveal")
+                .forEach((el) => observer.observe(el));
+
+            // 3. Mobile Menu
+            function toggleMenu() {
+                document.getElementById("nav-links").classList.toggle("active");
+            }
+            document
+                .querySelectorAll(".nav-links a")
+                .forEach(
+                    (l) =>
+                        (l.onclick = () =>
+                            document
+                                .getElementById("nav-links")
+                                .classList.remove("active"))
+                );
+        </script>
+    </body>
+</html>
